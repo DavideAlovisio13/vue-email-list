@@ -6,6 +6,7 @@ createApp({
         return {
             emails: [],
             mailTotal: 10,
+            percVal: 100
         }
     },
     methods: {
