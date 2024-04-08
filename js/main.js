@@ -1,23 +1,28 @@
-import axios from 'axios';
-const {createApp} = Vue;
+
+const { createApp } = Vue;
 
 createApp({
     data() {
         return {
             emails: [],
-            mailTotal:10,
+            mailTotal: 10,
         }
     },
     methods: {
         // funzione che genera numeri casuali
-        randomIntero(min, max){
+        randomInt(min, max) {
             return (Math.floor(Math.random() * ((max + 1) - min) + min));
         },
-        getEmail () {
-           
+        getEmail() {
+            for(let i = 0; i < this.mailTotal; i++){
+                axios.get('https://flynn.boolean.careers/exercises/api/random/mail').then((res) => {
+                    
+                    (this.emails).push(res.data.response);
+                });
+            }
         }
     },
     created() {
-        this.getN();
+        console.log(this.getEmail());
     }
-})
+}).mount('#app')
